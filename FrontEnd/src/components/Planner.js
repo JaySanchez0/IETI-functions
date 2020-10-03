@@ -85,31 +85,20 @@ function Planner(props) {
   const [nameFilter,setNameFilter] = React.useState("");
   const [dateFilter,setDateFilter] = React.useState("");
   const [applyFilter,setApplayFilter] = React.useState(false);
-  const [tasks,setTasks] = React.useState([{
-    "description": "Crear el front end",
-    "responsible": {
-        "name": "Santiago Carrillo",
-        "email": "sancarbar@gmail.com"
-    },
-    "status": "Ready",
-    "dueDate": "2020-05-12"
-},{
-    "description": "Crear Back end",
-    "responsible": {
-        "name": "Santiago Carrillo",
-        "email": "sancarbar@gmail.com"
-    },
-    "status": "Ready",
-    "dueDate": "2020-06-12"
-},{
-    "description": "Corregir Fallos",
-    "responsible": {
-        "name": "Santiago Carrillo",
-        "email": "sancarbar@gmail.com"
-    },
-    "status": "Ready",
-    "dueDate": "2020-07-12"
-    }]);
+  const [tasks,setTasks] = React.useState([]);
+
+  var updateView = ()=>{
+    fetch("http://localhost:7071/api/task")
+    .then(res=>res.json()).then((data)=>{
+      setTasks(data);
+      console.log("update");
+    });
+  }
+
+  React.useEffect(()=>{
+    updateView();
+  },[]);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -134,8 +123,14 @@ function Planner(props) {
   );
     const container = window !== undefined ? () => window().document.body : undefined;
     const addTask = (task)=>{
-      tasks.push(task);
-      setTasks(tasks);
+      fetch("http://localhost:7071/api/task",{
+        method:"POST",
+        body:JSON.stringify(task),
+        headers:{"Content-Type":"application/json"},
+        mode:"cors"
+      }).then(resp => resp.text()).then(()=>{
+        updateView();
+      }).catch(er=>alert("No se pudo añadir esta nueva tarea"));
       setOpenModal(false);
     }
   return (
