@@ -88,7 +88,7 @@ function Planner(props) {
   const [tasks,setTasks] = React.useState([]);
 
   var updateView = ()=>{
-    fetch("http://localhost:7071/api/task")
+    fetch("https://task-planner-app.azurewebsites.net/api/task?code=6d6gIMumCJ9iw8uWgtCmDNYnAuxsSXbPJ7C3HxU1u1YivTA1A6zD6g==")
     .then(res=>res.json()).then((data)=>{
       setTasks(data);
       console.log("update");
@@ -123,7 +123,7 @@ function Planner(props) {
   );
     const container = window !== undefined ? () => window().document.body : undefined;
     const addTask = (task)=>{
-      fetch("http://localhost:7071/api/task",{
+      fetch("https://task-planner-app.azurewebsites.net/api/task?code=6d6gIMumCJ9iw8uWgtCmDNYnAuxsSXbPJ7C3HxU1u1YivTA1A6zD6g==",{
         method:"POST",
         body:JSON.stringify(task),
         headers:{"Content-Type":"application/json"},

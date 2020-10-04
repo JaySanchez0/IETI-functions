@@ -10,4 +10,16 @@ Jeisson G. Sanchez R.
     func start
 ~~~
 
+## Deploy
+
+[ver](https://taskplanner-functions.firebaseapp.com/)
+
+
+## Login
+
+correo: juan@mail.com
+
+password: test
+
+
 Lo puedes mirar en http://localhost:7071/api/task
