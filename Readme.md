@@ -4,11 +4,6 @@
 
 Jeisson G. Sanchez R.
 
-### Run local
-
-~~~
-    func start
-~~~
 
 ## Deploy
 
@@ -26,4 +21,8 @@ correo: juan@mail.com
 password: test
 
 
-Lo puedes mirar en http://localhost:7071/api/task
+### Run local
+
+~~~
+    func start
+~~~
